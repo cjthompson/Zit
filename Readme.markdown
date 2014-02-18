@@ -11,7 +11,6 @@ Zit is simple to use.  Just include it and create a new container:
 <?php
 require_once '/path/to/lib/Zit/Container.php';
 $container = new \Zit\Container();
-?>
 ```
 
 ## Defining Objects
@@ -24,7 +23,6 @@ of the object:
 $container->set('auth', function() {
 	return new Auth();
 });
-?>
 ```
 
 All instantiation functions are passed the container as the first argument, making
@@ -35,7 +33,6 @@ dependency injection possible:
 $container->set('auth', function($container) {
 	return new Auth($container->get('db'));
 });
-?>
 ```
 	
 Zit also provides convenient magic methods for setting instantiation functions:
@@ -44,10 +41,9 @@ Zit also provides convenient magic methods for setting instantiation functions:
 <?php
 $container->setAuth(function() { // ... }); // Or:
 $container->set_auth(function() { // ... });
-?>
 ```
 
-By default, dependency instances are cached.  You can force a dependency to always return a new instance by defining it with the factory method.
+By default, dependency instances are cached.  You can force a depedency to always return a new instance by defining it with the factory method.
 
 ```php
 <?php
@@ -55,7 +51,7 @@ $container->set('db', $container->factory(function ($container) {
         return new Db($container);
 }));
 ```
-
+	
 ## Getting Objects
 
 Getting objects are as simple as:
@@ -63,7 +59,6 @@ Getting objects are as simple as:
 ```php
 <?php
 $container->get('auth');
-?>
 ```
 	
 Or, if you prefer the shorthand:
@@ -72,7 +67,6 @@ Or, if you prefer the shorthand:
 <?php
 $container->getAuth(); // Or:
 $container->get_auth();
-?>
 ```
 	
 ## Getting Fresh Objects
@@ -88,7 +82,6 @@ $container->freshAuth(); // Or:
 $container->fresh_auth(); // Or:
 $container->newAuth(); // Or:
 $container->new_auth();
-?>
 ```
 	
 Note the because the 'new' keyword is reserved, you can only use it if you're using
@@ -109,7 +102,6 @@ $container->setUser(function($c, $id)) {
 });
 
 $user = $container->newUser(1);
-?>
 ```
 	
 ## Storing Non-Objects
@@ -121,7 +113,6 @@ Just use the setParam() method:
 <?php
 $container->setParam('api_key', 'abcd1234567890');
 $key = $container->get('api_key');
-?>
 ```
 
 ## Custom Container
@@ -141,7 +132,6 @@ class Container extends \Zit\Container
 		$this->setUser(function() { // ... });
 	}
 }
-?>
 ```
 
 
